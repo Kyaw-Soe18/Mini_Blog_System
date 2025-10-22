@@ -1,0 +1,96 @@
+Laravel (Design Arc : MVC) => Model + View + Controller
+
+controller => php artisan make:controller (--resource) // first upper
+
+view => php artisan make:view view_name
+
+model => php artisan make:model model_name
+
+select * from user;
+User::get();
+
+insert into user value (.....)
+User::create($data)
+
+User::find($id)->update($data)
+
+Model => Data Management (table)
+View => Design
+Controller => Development
+
+DB Connection
+=============
+. create database in phpmyadmin
+. env (configur) connection 
+. php artisan migrate
+
+Table Create 
+============
+php artisan make:migration create_products_table
+
+DB command 
+==========
+php artisan migrate             => upload all table from database / migration
+php artisan migrate:rollback    => roll back all table from phpmyadmin
+php artisan migrate:status      => check tables upload or not
+php artisan migrate:refresh     => rollback and then migrate 
+php artisan migrate:fresh       => rollback and then migrate
+
+Making Model 
+============
+php artisan make:model User     => model create
+php artisan make:model User -m  => model + table create
+php artisan make:model User -mc => model + table + controller create
+
+Admin 
+
+View | Controller | {Table | Model}
+
+Clear Cache 
+===========
+
+Browser cache => clear cache and hard reload 
+
+Project cache => 
+
+php artisan config:clear 
+php artisan cache:clear 
+php artisan config:cache (3 times)
+
+php artisan view:clear
+php artisan route:clear 
+
+Key generate
+============
+php artisan key:generate
+
+CRUD
+=====
+    Post::create($data);
+
+    Post::where('age','<', '15')->get();
+
+    Post::find($id)->update($id);
+
+    Post::findOrFail($id)->delete();
+
+    Post::where('id', $id)->delete();
+
+Database Seeding 
+================
+1. default data 
+2. performance test 
+
+Database seeder => Factory + Seeder 
+
+Factory => php artisan make:factory PostFactory
+Seeder => php artisan make:seeder PostSeeder 
+
+php artisan migrate:fresh 
+php artisan db:seed 
+
+php artisan migrate:fresh --seed
+
+DatabaseSeeder > Seeder (count) > Factory (data field)
+
+for old data => value="{{ request('searchKey')}}" // old
